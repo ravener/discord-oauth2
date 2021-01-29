@@ -3,7 +3,7 @@ This is a provider for the package [golang.org/x/oauth2](https://godoc.org/golan
 
 ## Install
 ```sh
-$ go get github.com/pollen5/discord-oauth2
+$ go get github.com/ravener/discord-oauth2
 ```
 
 ## Usage
