@@ -1,4 +1,4 @@
-# Discord Oauth2
+# Discord OAuth 2.0
 This is a provider for the package [golang.org/x/oauth2](https://godoc.org/golang.org/x/oauth2) implementing authentication endpoints for [Discord](https://discordapp.com)
 
 ## Install
