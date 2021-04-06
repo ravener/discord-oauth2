@@ -56,7 +56,7 @@ func main() {
 		}
 
 		// Step 4: Use the access token, here we use it to get the logged in user's info.
-		res, err := conf.Client(oauth2.NoContext, token).Get("https://discordapp.com/api/v6/users/@me")
+		res, err := conf.Client(oauth2.NoContext, token).Get("https://discordapp.com/api/users/@me")
 
 		if err != nil || res.StatusCode != 200 {
 			w.WriteHeader(http.StatusInternalServerError)
