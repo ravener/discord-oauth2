@@ -56,7 +56,6 @@ func main() {
 		}
 
 		// Step 4: Use the access token, here we use it to get the logged in user's info.
-		// Not specifying API version seems to fix issues for some token issues.
 		res, err := conf.Client(oauth2.NoContext, token).Get("https://discordapp.com/api/users/@me")
 
 		if err != nil || res.StatusCode != 200 {
