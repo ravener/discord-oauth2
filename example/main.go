@@ -48,7 +48,7 @@ func main() {
 		}
 		// Step 3: We exchange the code we got for an access token
 		// Then we can use the access token to do actions, limited to scopes we requested
-		token, err := conf.Exchange(oauth2.NoContext, r.FormValue("code"))
+		token, err := conf.Exchange(context.Background(), r.FormValue("code"))
 
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
@@ -57,7 +57,7 @@ func main() {
 		}
 
 		// Step 4: Use the access token, here we use it to get the logged in user's info.
-		res, err := conf.Client(context.TODO(), token).Get("https://discordapp.com/api/users/@me")
+		res, err := conf.Client(context.Background(), token).Get("https://discordapp.com/api/users/@me")
 
 		if err != nil || res.StatusCode != 200 {
 			w.WriteHeader(http.StatusInternalServerError)
