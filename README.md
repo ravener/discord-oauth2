@@ -35,5 +35,7 @@ func main() {
 ```
 A full authentication flow example server can be found in [example directory](example)
 
+You can join [`#oauth2` in my Discord Server](https://discord.gg/wpE3Nfp) for support and updates.
+
 ## License
 [MIT](LICENSE)
