@@ -5,6 +5,7 @@
 package main
 
 import (
+	"context"
 	"github.com/pollen5/discord-oauth2"
 	"golang.org/x/oauth2"
 	"io/ioutil"
@@ -47,7 +48,7 @@ func main() {
 		}
 		// Step 3: We exchange the code we got for an access token
 		// Then we can use the access token to do actions, limited to scopes we requested
-		token, err := conf.Exchange(oauth2.NoContext, r.FormValue("code"))
+		token, err := conf.Exchange(context.Background(), r.FormValue("code"))
 
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
