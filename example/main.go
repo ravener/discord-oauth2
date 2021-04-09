@@ -5,11 +5,12 @@
 package main
 
 import (
-	"github.com/pollen5/discord-oauth2"
+	"github.com/ravener/discord-oauth2"
 	"golang.org/x/oauth2"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"context"
 )
 
 // This is the state key used for security, sent in login, validated in callback.
@@ -56,7 +57,7 @@ func main() {
 		}
 
 		// Step 4: Use the access token, here we use it to get the logged in user's info.
-		res, err := conf.Client(oauth2.NoContext, token).Get("https://discordapp.com/api/users/@me")
+		res, err := conf.Client(context.TODO(), token).Get("https://discordapp.com/api/users/@me")
 
 		if err != nil || res.StatusCode != 200 {
 			w.WriteHeader(http.StatusInternalServerError)
