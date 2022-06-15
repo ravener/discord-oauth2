@@ -11,7 +11,7 @@ $ go get github.com/ravener/discord-oauth2
 package main
 
 import (
-  "github.com/pollen5/discord-oauth2"
+  "github.com/ravener/discord-oauth2"
   "golang.org/x/oauth2"
 )
 
