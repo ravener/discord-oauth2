@@ -5,12 +5,15 @@
 package main
 
 import (
-	"github.com/ravener/discord-oauth2"
-	"golang.org/x/oauth2"
+	"context"
+	"crypto/rand"
+	"encoding/base64"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"context"
+	"os"
+
+	"golang.org/x/oauth2"
 )
 
 // This is the state key used for security, sent in login, validated in callback.
@@ -18,15 +21,31 @@ import (
 // but in real apps you must provide a proper function that generates a state.
 var state = "random"
 
+// RandToken generates a random @l length token.
+func RandToken(l int) (string, error) {
+	b := make([]byte, l)
+	if _, err := rand.Read(b); err != nil {
+		return "", err
+	}
+	return base64.StdEncoding.EncodeToString(b), nil
+}
+
 func main() {
+	// Generate a random state key
+	//if you encounter ERROR! securecookie: the value is not valid just ignore the error
+	state, err := RandToken(32)
+	if err != nil {
+		log.Fatal("Failed to generate random state: ", err)
+		return
+	}
 	// Create a config.
 	// Ensure you add the redirect url in the application's oauth2 settings
 	// in the discord devs page.
 	conf := &oauth2.Config{
 		RedirectURL: "http://localhost:3000/auth/callback",
 		// This next 2 lines must be edited before running this.
-		ClientID:     "id",
-		ClientSecret: "secret",
+		ClientID:     os.Getenv("CLIENT_ID_DISCORD"),
+		ClientSecret: os.Getenv("CLIENT_SECRET_DISCORD"),
 		Scopes:       []string{discord.ScopeIdentify},
 		Endpoint:     discord.Endpoint,
 	}

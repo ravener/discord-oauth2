@@ -20,8 +20,8 @@ func main() {
     Endpoint: discord.Endpoint,
     Scopes: []string{discord.ScopeIdentify},
     RedirectURL: "http://localhost:3000/auth/callback",
-    ClientID: "id",
-    ClientSecret: "secret",
+    ClientID: os.Getenv("CLIENT_ID_DISCORD"),
+    ClientSecret: os.Getenv("CLIENT_SECRET_DISCORD"),
   }
   // Use oauth2 package as normal, i.e
   // redirect users to conf.AuthCodeURL("state") for initial auth
@@ -34,6 +34,12 @@ func main() {
 }
 ```
 A full authentication flow example server can be found in [example directory](example)
+
+## Generate Discord Client
+- Navigate to [Discord Developer Console](https://discord.com/developers/applications)
+- Create a new application
+- Add Redirect URL to the application like (http://localhost:3000/auth/callback)
+- Copy the Client ID and Client Secret
 
 You can join [`#oauth2` in my Discord Server](https://discord.gg/wpE3Nfp) for support and updates.
 
